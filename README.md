@@ -1,48 +1,88 @@
 # 5-Stage Pipelined RV32I Processor
 
-A custom **32-bit RV32I pipelined processor** implemented in **Verilog HDL**, featuring a modular 5-stage pipeline with data forwarding for improved instruction throughput. The processor was designed, implemented, and functionally verified using **Xilinx Vivado 2020.2**.
+A **32-bit RV32I pipelined RISC-V processor** implemented in **Verilog HDL**. The processor follows the classic **5-stage pipeline architecture** (IF, ID, EX, MEM, WB) and incorporates **data forwarding** to reduce read-after-write (RAW) data hazards. The design was functionally verified through RTL simulation and synthesized using **Xilinx Vivado**.
 
 ---
 
 ## Features
 
-- 32-bit **RV32I** Integer Instruction Set Architecture
-- 5-stage pipelined datapath (IF, ID, EX, MEM, WB)
-- Data forwarding unit to mitigate data hazards
-- Modular RTL implementation in Verilog HDL
-- ALU with dedicated ALU Control Unit
-- Register File and Immediate Generator
-- Pipeline registers (IF/ID, ID/EX, EX/MEM, MEM/WB)
-- Functional RTL simulation and verification in Xilinx Vivado 2020.2
+- 32-bit **RISC-V RV32I** processor
+- Classic 5-stage pipelined datapath
+- Data Forwarding Unit for RAW hazard mitigation
+- Modular Verilog HDL implementation
+- ALU with dedicated ALU Control
+- Register File
+- Immediate Generator
+- Pipeline Registers (IF/ID, ID/EX, EX/MEM, MEM/WB)
+- RTL simulation and functional verification
+- Synthesized using Xilinx Vivado
 
 ---
 
 ## Processor Architecture
 
 <p align="center">
-  <img src="docs/architecture.png" alt="Processor Architecture" width="900"/>
+  <img src="docs/architecture.png" alt="Processor Architecture" width="900">
+</p>
+
+---
+
+## RTL Schematic
+
+<p align="center">
+  <img src="docs/Schematic.png" alt="RTL Schematic" width="900">
+</p>
+
+---
+
+## Simulation Results
+
+<p align="center">
+  <img src="docs/riscvsimres.png" alt="Simulation Results" width="900">
 </p>
 
 ---
 
 ## Pipeline Stages
 
-| Stage | Description |
-| :---: | ----------- |
-| **IF** | Instruction Fetch |
-| **ID** | Instruction Decode and Register Read |
-| **EX** | ALU Execution and Operand Forwarding |
-| **MEM** | Data Memory Access |
-| **WB** | Register Write Back |
+| Stage | Function |
+|-------|----------|
+| **IF** | Fetch instruction from Instruction Memory |
+| **ID** | Decode instruction, generate control signals, and read operands from the Register File |
+| **EX** | Execute ALU operations and perform operand forwarding |
+| **MEM** | Perform load/store operations on Data Memory |
+| **WB** | Write execution or memory results back to the Register File |
+
+---
+
+## Major Components
+
+- Program Counter (PC)
+- Instruction Memory
+- Control Unit
+- Register File
+- Immediate Generator
+- ALU
+- ALU Control Unit
+- Data Memory
+- Forwarding Unit
+- IF/ID Pipeline Register
+- ID/EX Pipeline Register
+- EX/MEM Pipeline Register
+- MEM/WB Pipeline Register
 
 ---
 
 ## Project Structure
 
 ```text
-.
+Pipelined-RISC-V-Processor
+│
 ├── docs/
-│   └── architecture.png
+│   ├── architecture.png
+│   ├── Schematic.png
+│   └── riscvsimres.png
+│
 ├── riscv.srcs/
 ├── README.md
 ├── .gitignore
@@ -54,8 +94,10 @@ A custom **32-bit RV32I pipelined processor** implemented in **Verilog HDL**, fe
 ## Tools & Technologies
 
 - Verilog HDL
-- Xilinx Vivado 2020.2
+- Xilinx Vivado
 - RISC-V RV32I ISA
+- RTL Simulation
+- FPGA Design Flow
 
 ---
 
@@ -64,11 +106,12 @@ A custom **32-bit RV32I pipelined processor** implemented in **Verilog HDL**, fe
 - Hazard Detection Unit
 - Branch Prediction
 - Cache Memory Integration
-- AXI Interface Support
+- AXI4/AXI4-Lite Interface
 - UART Peripheral Integration
+- FPGA Hardware Validation
 
 ---
 
 ## License
 
-This project is released under the MIT License.
+This project is licensed under the MIT License.
