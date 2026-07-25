@@ -1,0 +1,5 @@
+00300093    // 1. ADDI x1, x0, 3    (x1 = 3, loop counter)
+00100113    // 2. ADDI x2, x0, 1    (x2 = 1, decrement value)
+00000013    // 3. ADDI x0, x0, 0    (NOP - Loop start at PC 0x08)
+402080b3    // 4. SUB  x1, x1, x2   (x1 = x1 - 1)
+fe008ee3    // 5. BEQ  x1, x0, -4   (If x1 == 0, jump out; else branch back to loop)
